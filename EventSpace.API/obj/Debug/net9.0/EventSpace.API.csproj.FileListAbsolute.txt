@@ -1,0 +1,141 @@
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.AssemblyReference.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfoInputs.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfo.cs
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.CoreCompileInputs.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.staticwebassets.endpoints.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.exe
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.deps.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.runtimeconfig.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.pdb
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\scopedcss\bundle\EventSpace.API.styles.css
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpa.B20CF21D.Up2Date
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\refint\EventSpace.API.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.pdb
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.genruntimeconfig.cache
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\ref\EventSpace.API.dll
+C:\Users\uziel\Desktop\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\swae.build.ex.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.staticwebassets.endpoints.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.exe
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.deps.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.runtimeconfig.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.pdb
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.AssemblyReference.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfoInputs.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfo.cs
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.CoreCompileInputs.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\scopedcss\bundle\EventSpace.API.styles.css
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\swae.build.ex.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpa.B20CF21D.Up2Date
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\refint\EventSpace.API.dll
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.pdb
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.genruntimeconfig.cache
+C:\Users\megam\Downloads\Proyecto-integrador-prueba-main (1)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\ref\EventSpace.API.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\appsettings.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.staticwebassets.endpoints.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.exe
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.deps.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.runtimeconfig.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\EventSpace.API.pdb
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.AssemblyReference.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfoInputs.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.AssemblyInfo.cs
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.csproj.CoreCompileInputs.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\scopedcss\bundle\EventSpace.API.styles.css
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\swae.build.ex.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpa.B20CF21D.Up2Date
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\refint\EventSpace.API.dll
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.pdb
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\EventSpace.API.genruntimeconfig.cache
+C:\Users\andre\Downloads\Proyecto-integrador-prueba-main (2)\Proyecto-integrador-prueba-main\EventSpace.API\obj\Debug\net9.0\ref\EventSpace.API.dll

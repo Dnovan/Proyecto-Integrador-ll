@@ -1,0 +1,82 @@
+/* src/components/molecules/InfiniteMenu.css */
+
+#infinite-grid-menu-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.face-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    font-size: 4rem;
+    font-weight: 300;
+    /* Lighter font weight for elegance */
+    color: #1A1A1A;
+    /* Dark text */
+    text-shadow: none;
+    /* Clean look, or very subtle shadow */
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    letter-spacing: -0.02em;
+}
+
+.face-description {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.25rem;
+    color: #4A4A4A;
+    /* Soft dark gray */
+    text-align: center;
+    max-width: 80%;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    font-weight: 400;
+}
+
+.action-button {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-neon);
+    /* Soft Gold */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.action-button:hover {
+    transform: translateX(-50%) scale(1.05);
+    background-color: var(--color-neon-light);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.6);
+}
+
+.action-button-icon {
+    font-size: 1.5rem;
+    color: #000;
+    margin: 0;
+}
+
+.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.active {
+    opacity: 1;
+}
