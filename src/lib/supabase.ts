@@ -225,6 +225,7 @@ export const auth = {
     /**
      * Escuchar cambios de autenticación
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onAuthStateChange(callback: (event: string, session: any) => void) {
         return supabase.auth.onAuthStateChange(callback);
     },

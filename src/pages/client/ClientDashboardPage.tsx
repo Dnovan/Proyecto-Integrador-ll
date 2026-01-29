@@ -26,7 +26,6 @@ export const ClientDashboardPage: React.FC = () => {
     const { user } = useAuth();
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [venues, setVenues] = useState<Venue[]>([]);
-    const [_isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const loadVenues = async () => {
@@ -35,8 +34,6 @@ export const ClientDashboardPage: React.FC = () => {
                 setVenues(response.data);
             } catch (error) {
                 console.error('Error loading venues:', error);
-            } finally {
-                setIsLoading(false);
             }
         };
 

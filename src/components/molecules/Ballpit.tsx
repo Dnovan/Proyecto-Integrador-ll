@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unused-expressions */
 // @ts-nocheck
 import { useRef, useEffect } from 'react';
 import {

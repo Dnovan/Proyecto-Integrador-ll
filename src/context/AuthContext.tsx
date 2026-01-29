@@ -103,23 +103,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
                 setSession(session);
                 if (session?.user) {
-                    try {
-                        const user = await mapSupabaseUser(session.user);
-                        setIsEmailVerified(!!session.user.email_confirmed_at);
+                    // Usar Promise.race para evitar bloquear la UI
+                    const timeoutPromise = new Promise<null>((resolve) =>
+                        setTimeout(() => resolve(null), 2000)
+                    );
+
+                    const userPromise = mapSupabaseUser(session.user).catch((err) => {
+                        console.warn('initSession mapSupabaseUser failed:', err);
+                        return null;
+                    });
+
+                    const user = await Promise.race([userPromise, timeoutPromise]);
+
+                    setIsEmailVerified(!!session.user.email_confirmed_at);
+
+                    if (user) {
                         setState({
                             user,
                             isAuthenticated: true,
                             isLoading: false,
                             error: null,
                         });
-                    } catch (err) {
-                        console.error('Error mapping user:', err);
-                        // Fallback to basic user if DB fails
+                    } else {
+                        // Fallback to basic user
                         setState({
                             user: {
                                 id: session.user.id,
                                 email: session.user.email || '',
-                                name: session.user.email?.split('@')[0] || 'Usuario',
+                                name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || 'Usuario',
                                 role: (session.user.user_metadata?.role || 'CLIENTE') as UserRole,
                                 avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${session.user.email}`,
                                 createdAt: new Date(session.user.created_at),
@@ -158,8 +169,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 setSession(session);
 
                 if (session?.user) {
-                    try {
-                        const user = await mapSupabaseUser(session.user);
+                    // Usar Promise.race para evitar bloquear la UI si mapSupabaseUser tarda
+                    const timeoutPromise = new Promise<null>((resolve) =>
+                        setTimeout(() => resolve(null), 2000)
+                    );
+
+                    const userPromise = mapSupabaseUser(session.user).catch((err) => {
+                        console.warn('mapSupabaseUser failed:', err);
+                        return null;
+                    });
+
+                    const user = await Promise.race([userPromise, timeoutPromise]);
+
+                    if (user) {
                         setIsEmailVerified(!!session.user.email_confirmed_at);
                         setState({
                             user,
@@ -167,14 +189,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                             isLoading: false,
                             error: null,
                         });
-                    } catch (err) {
-                        console.error('Error mapping user on change:', err);
-                        // Fallback to basic user
+                    } else {
+                        // Fallback to basic user - no bloquear la UI
+                        console.log('Using fallback user data');
                         setState({
                             user: {
                                 id: session.user.id,
                                 email: session.user.email || '',
-                                name: session.user.email?.split('@')[0] || 'Usuario',
+                                name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || 'Usuario',
                                 role: (session.user.user_metadata?.role || 'CLIENTE') as UserRole,
                                 avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${session.user.email}`,
                                 createdAt: new Date(session.user.created_at),
@@ -183,6 +205,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                             isLoading: false,
                             error: null,
                         });
+                        setIsEmailVerified(!!session.user.email_confirmed_at);
                     }
                 } else {
                     setState({
@@ -207,22 +230,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const login = useCallback(async (credentials: LoginCredentials) => {
         setState(prev => ({ ...prev, isLoading: true, error: null }));
 
-        // Timeout de seguridad de 30 segundos para evitar spinner infinito
-        const safetyTimeout = setTimeout(() => {
-            setState(prev => {
-                if (prev.isLoading) {
-                    console.warn('Login safety timeout triggered');
-                    return { ...prev, isLoading: false, error: 'Timeout de conexión. Intenta de nuevo.' };
-                }
-                return prev;
-            });
-        }, 30000);
-
         try {
             const { data, error } = await supabaseAuth.signIn(credentials.email, credentials.password);
 
             if (error) {
-                clearTimeout(safetyTimeout);
                 throw new Error(
                     error.message === 'Invalid login credentials'
                         ? 'Credenciales inválidas. Verifica tu email y contraseña.'
@@ -231,25 +242,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
 
             if (!data.user) {
-                clearTimeout(safetyTimeout);
                 throw new Error('No se pudo obtener información del usuario');
             }
 
-            // Login exitoso - limpiar timeout inmediatamente
-            clearTimeout(safetyTimeout);
-
-            // El estado se actualizará automáticamente por el listener onAuthStateChange
-            // Forzamos isLoading a false después de un corto delay para asegurar que el UI responda
-            setTimeout(() => {
-                setState(prev => {
-                    if (prev.isLoading && prev.user) {
-                        return { ...prev, isLoading: false };
-                    }
-                    return prev;
+            // Login exitoso - mapear usuario inmediatamente sin esperar al listener
+            try {
+                const user = await mapSupabaseUser(data.user);
+                setState({
+                    user,
+                    isAuthenticated: true,
+                    isLoading: false,
+                    error: null,
                 });
-            }, 2000);
+                setSession(data.session);
+                setIsEmailVerified(!!data.user.email_confirmed_at);
+            } catch (mapError) {
+                console.warn('Error mapping user, using fallback:', mapError);
+                // Fallback to basic user
+                setState({
+                    user: {
+                        id: data.user.id,
+                        email: data.user.email || '',
+                        name: data.user.email?.split('@')[0] || 'Usuario',
+                        role: (data.user.user_metadata?.role || 'CLIENTE') as UserRole,
+                        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.user.email}`,
+                        createdAt: new Date(data.user.created_at),
+                    },
+                    isAuthenticated: true,
+                    isLoading: false,
+                    error: null,
+                });
+                setSession(data.session);
+                setIsEmailVerified(!!data.user.email_confirmed_at);
+            }
         } catch (error) {
-            clearTimeout(safetyTimeout);
             setState(prev => ({
                 ...prev,
                 isLoading: false,
@@ -424,6 +450,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
  * 
  * @throws Error si se usa fuera del AuthProvider
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = (): AuthContextType => {
     const context = useContext(AuthContext);
     if (context === undefined) {

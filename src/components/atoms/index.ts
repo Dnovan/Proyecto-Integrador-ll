@@ -14,3 +14,5 @@ export {
     MessageSkeleton,
     type SkeletonProps
 } from './Skeleton';
+export { Notification, type NotificationProps, type NotificationType } from './Notification';
+

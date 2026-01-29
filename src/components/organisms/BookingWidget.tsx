@@ -15,6 +15,7 @@ interface BookingWidgetProps {
     pricePerPerson?: number;
     onReserve?: (data: BookingData) => void;
     selectedDate?: string | null;
+    isLoading?: boolean;
 }
 
 interface BookingData {
@@ -82,6 +83,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
     pricePerPerson = 85,
     onReserve,
     selectedDate,
+    isLoading = false,
 }) => {
     const [guestCount, setGuestCount] = useState(Math.round((minCapacity + maxCapacity) / 4));
     const [extras, setExtras] = useState({
@@ -470,7 +472,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
             {/* Reserve Button */}
             <motion.button
                 onClick={handleReserve}
-                disabled={!selectedDate}
+                disabled={!selectedDate || isLoading}
                 onMouseEnter={() => setIsHoveringButton(true)}
                 onMouseLeave={() => setIsHoveringButton(false)}
                 style={{
@@ -478,24 +480,25 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                     padding: '16px',
                     fontSize: '1rem',
                     fontWeight: 700,
-                    color: selectedDate ? colors.white : colors.textMuted,
-                    background: selectedDate
+                    color: (selectedDate && !isLoading) ? colors.white : colors.textMuted,
+                    background: (selectedDate && !isLoading)
                         ? `linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%)`
                         : colors.bgLight,
                     border: 'none',
                     borderRadius: '14px',
-                    cursor: selectedDate ? 'pointer' : 'not-allowed',
-                    boxShadow: selectedDate && isHoveringButton
+                    cursor: (selectedDate && !isLoading) ? 'pointer' : 'not-allowed',
+                    boxShadow: (selectedDate && !isLoading) && isHoveringButton
                         ? `0 8px 30px rgba(197, 160, 89, 0.5), 0 0 20px rgba(197, 160, 89, 0.2)`
-                        : selectedDate
+                        : (selectedDate && !isLoading)
                             ? '0 4px 15px rgba(197, 160, 89, 0.35)'
                             : 'none',
                     transition: 'all 0.3s ease',
+                    opacity: isLoading ? 0.7 : 1,
                 }}
-                whileHover={selectedDate ? { scale: 1.02, y: -2 } : {}}
-                whileTap={selectedDate ? { scale: 0.98 } : {}}
+                whileHover={(selectedDate && !isLoading) ? { scale: 1.02, y: -2 } : {}}
+                whileTap={(selectedDate && !isLoading) ? { scale: 0.98 } : {}}
             >
-                {selectedDate ? 'Reservar Ahora' : 'Selecciona una fecha'}
+                {isLoading ? 'Procesando...' : selectedDate ? 'Reservar Ahora' : 'Selecciona una fecha'}
             </motion.button>
 
             {/* Disclaimer */}

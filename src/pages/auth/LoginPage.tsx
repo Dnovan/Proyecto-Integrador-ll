@@ -7,15 +7,18 @@
  * - Seguridad: Validación de campos y manejo seguro de credenciales
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, Sparkles, AlertCircle, Building2 } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Sparkles, Building2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { AuthImagePanel } from '../../components/molecules/AuthImagePanel';
+import { Notification } from '../../components/atoms/Notification';
+import { useNotification } from '../../hooks/useNotification';
 
 export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const { login, isLoading, error, clearError } = useAuth();
+    const { notification, showError, showSuccess, closeNotification } = useNotification();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,6 +27,13 @@ export const LoginPage: React.FC = () => {
         email?: string;
         password?: string;
     }>({});
+
+    // Mostrar notificación cuando hay error del AuthContext
+    useEffect(() => {
+        if (error) {
+            showError(error, 'Error de autenticación');
+        }
+    }, [error, showError]);
 
     const validateForm = (): boolean => {
         const errors: { email?: string; password?: string } = {};
@@ -41,6 +51,11 @@ export const LoginPage: React.FC = () => {
         }
 
         setValidationErrors(errors);
+
+        if (Object.keys(errors).length > 0) {
+            showError('Por favor corrige los errores en el formulario', 'Validación');
+        }
+
         return Object.keys(errors).length === 0;
     };
 
@@ -52,14 +67,29 @@ export const LoginPage: React.FC = () => {
 
         try {
             await login({ email, password });
-            navigate('/client-dashboard');
+            showSuccess('¡Bienvenido! Redirigiendo...', 'Inicio exitoso');
+            // Pequeño delay para mostrar la notificación de éxito
+            setTimeout(() => {
+                navigate('/client-dashboard');
+            }, 1000);
         } catch {
-            // Error manejado por AuthContext
+            // Error manejado por el useEffect que escucha 'error'
         }
     };
 
     return (
         <div className="auth-container">
+            {/* Sistema de Notificaciones Toast */}
+            {notification && (
+                <Notification
+                    message={notification.message}
+                    type={notification.type}
+                    title={notification.title}
+                    onClose={closeNotification}
+                    duration={notification.duration || 3000}
+                />
+            )}
+
             {/* Panel izquierdo - Imagen inmersiva */}
             <AuthImagePanel variant="client" />
 
@@ -81,14 +111,6 @@ export const LoginPage: React.FC = () => {
                             Ingresa tus credenciales para continuar
                         </p>
                     </div>
-
-                    {/* Error general */}
-                    {error && (
-                        <div className="auth-error">
-                            <AlertCircle className="auth-error__icon w-5 h-5" />
-                            <span className="auth-error__text">{error}</span>
-                        </div>
-                    )}
 
                     {/* Formulario */}
                     <form onSubmit={handleSubmit}>

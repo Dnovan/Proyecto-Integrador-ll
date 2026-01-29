@@ -2,26 +2,19 @@
  * @fileoverview Página de confirmación de reserva exitosa
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle, Home, Calendar, ArrowRight } from 'lucide-react';
 
 const BookingConfirmedPage: React.FC = () => {
     const [searchParams] = useSearchParams();
-    const [paymentInfo, setPaymentInfo] = useState({
-        paymentId: '',
-        status: '',
-        externalReference: '',
-    });
 
-    useEffect(() => {
-        // Obtener información del pago de los query params de Mercado Pago
-        setPaymentInfo({
-            paymentId: searchParams.get('payment_id') || '',
-            status: searchParams.get('status') || 'approved',
-            externalReference: searchParams.get('external_reference') || '',
-        });
-    }, [searchParams]);
+    // Usar useMemo en lugar de useEffect + useState para evitar renders innecesarios
+    const paymentInfo = useMemo(() => ({
+        paymentId: searchParams.get('payment_id') || '',
+        status: searchParams.get('status') || 'approved',
+        externalReference: searchParams.get('external_reference') || '',
+    }), [searchParams]);
 
     return (
         <div style={{

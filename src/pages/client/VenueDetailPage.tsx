@@ -28,11 +28,13 @@ import {
 import { motion } from 'framer-motion';
 import { Avatar } from '../../components/atoms/Avatar';
 import { Skeleton } from '../../components/atoms/Skeleton';
+import { Notification } from '../../components/atoms/Notification';
 import { StarRating } from '../../components/molecules/StarRating';
 import { BookingWidget } from '../../components/organisms/BookingWidget';
 import * as api from '../../services/mockApi';
 import { createPaymentPreference, redirectToCheckout, type BookingPaymentData } from '../../services/mercadoPago';
 import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../hooks/useNotification';
 import type { Venue, Review, DateAvailability } from '../../types';
 
 // Premium colors
@@ -49,6 +51,7 @@ const colors = {
 
 export const VenueDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const { notification, showError, showSuccess, showWarning, closeNotification } = useNotification();
 
     const [venue, setVenue] = useState<Venue | null>(null);
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -174,6 +177,17 @@ export const VenueDetailPage: React.FC = () => {
 
     return (
         <div style={{ minHeight: '100vh', background: colors.white }}>
+            {/* Sistema de Notificaciones Toast */}
+            {notification && (
+                <Notification
+                    message={notification.message}
+                    type={notification.type}
+                    title={notification.title}
+                    onClose={closeNotification}
+                    duration={notification.duration || 4000}
+                />
+            )}
+
             {/* Galería de imágenes */}
             <section style={{ position: 'relative' }}>
                 <div style={{
@@ -602,14 +616,15 @@ export const VenueDetailPage: React.FC = () => {
                                 minCapacity={Math.max(10, Math.floor(venue.capacity * 0.1))}
                                 pricePerPerson={Math.round(venue.price / venue.capacity)}
                                 selectedDate={selectedDate}
+                                isLoading={isProcessingPayment}
                                 onReserve={async (data) => {
                                     if (!isAuthenticated || !user) {
-                                        alert('Debes iniciar sesión para reservar');
+                                        showWarning('Debes iniciar sesión para reservar', 'Autenticación requerida');
                                         return;
                                     }
 
                                     if (!selectedDate) {
-                                        alert('Por favor selecciona una fecha');
+                                        showWarning('Por favor selecciona una fecha en el calendario', 'Fecha requerida');
                                         return;
                                     }
 
@@ -627,16 +642,17 @@ export const VenueDetailPage: React.FC = () => {
                                             clientName: user.name,
                                         };
 
-                                        // Access token de Mercado Pago (en producción esto debería ir en el backend)
-                                        const accessToken = 'APP_USR-337333907137644-012812-d30cd0a0090d0690d29db1c42633e920-3165606748';
+                                        showSuccess('Procesando pago...', 'Redirigiendo a Mercado Pago');
 
-                                        const preference = await createPaymentPreference(paymentData, accessToken);
+                                        // Usar el access token de las variables de entorno
+                                        const preference = await createPaymentPreference(paymentData);
 
                                         // Redirigir a Mercado Pago (sandbox para pruebas)
                                         redirectToCheckout(preference.id, true);
                                     } catch (error) {
                                         console.error('Error creating payment:', error);
-                                        alert('Error al procesar el pago. Por favor intenta de nuevo.');
+                                        const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+                                        showError(`Error al procesar el pago: ${errorMessage}`, 'Error de pago');
                                     } finally {
                                         setIsProcessingPayment(false);
                                     }

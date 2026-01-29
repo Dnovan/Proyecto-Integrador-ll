@@ -134,7 +134,7 @@ export const RegisterProviderPage: React.FC = () => {
                             color: '#2C2C2C',
                             marginBottom: '12px',
                         }}>
-                            ¡Solicitud Recibida!
+                            ¡Registro Exitoso!
                         </h1>
 
                         <p style={{
@@ -154,7 +154,7 @@ export const RegisterProviderPage: React.FC = () => {
                         }}>
                             Haz clic en el enlace del correo para verificar tu cuenta.
                             <br />
-                            Una vez verificado, podrás iniciar sesión como proveedor.
+                            Una vez verificado, podrás iniciar sesión y comenzar a publicar tus espacios.
                             <br />
                             Revisa tu carpeta de spam si no lo encuentras.
                         </p>
@@ -389,7 +389,7 @@ export const RegisterProviderPage: React.FC = () => {
                             ) : (
                                 <>
                                     <Sparkles className="w-5 h-5" />
-                                    Solicitar Registro como Proveedor
+                                    Registrarse como Proveedor
                                 </>
                             )}
                         </button>

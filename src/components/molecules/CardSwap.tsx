@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps, react-hooks/preserve-manual-memoization */
 import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, type ReactNode, type ReactElement } from 'react';
 import gsap from 'gsap';
 import './CardSwap.css';
