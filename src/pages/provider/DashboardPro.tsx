@@ -22,6 +22,7 @@ import {
     Settings,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useGlobalNotification } from '../../context/NotificationContext';
 import { Card } from '../../components/atoms/Card';
 import { Button } from '../../components/atoms/Button';
 import { Badge } from '../../components/atoms/Badge';
@@ -69,6 +70,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, change, icon }) =
 
 export const DashboardPro: React.FC = () => {
     const { user } = useAuth();
+    const { showError } = useGlobalNotification();
 
     const [metrics, setMetrics] = useState<ProviderMetrics | null>(null);
     const [venues, setVenues] = useState<Venue[]>([]);
@@ -91,13 +93,14 @@ export const DashboardPro: React.FC = () => {
                 setBookings(bookingsData);
             } catch (error) {
                 console.error('Error loading dashboard:', error);
+                showError('Error al cargar los datos del dashboard', 'Error de carga');
             } finally {
                 setIsLoading(false);
             }
         };
 
         loadData();
-    }, [user]);
+    }, [user, showError]);
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('es-MX', {
@@ -220,7 +223,7 @@ export const DashboardPro: React.FC = () => {
                                     {venues.slice(0, 3).map((venue) => (
                                         <Link
                                             key={venue.id}
-                                            to={`/proveedor/locales/${venue.id}`}
+                                            to={`/local/${venue.id}`}
                                             className="flex gap-4 p-4 bg-bg-secondary rounded-2xl hover:bg-bg-card transition-colors group"
                                         >
                                             <img

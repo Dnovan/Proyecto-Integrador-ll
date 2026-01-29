@@ -12,10 +12,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Phone, Sparkles, AlertCircle, CheckCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useGlobalNotification } from '../../context/NotificationContext';
 import { AuthImagePanel } from '../../components/molecules/AuthImagePanel';
 
 export const RegisterPage: React.FC = () => {
     const { register, isLoading, error, clearError } = useAuth();
+    const { showSuccess, showError } = useGlobalNotification();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -89,12 +91,14 @@ export const RegisterPage: React.FC = () => {
             });
 
             console.log('Registration successful, showing verification message');
+            showSuccess('¡Registro exitoso! Revisa tu correo para verificar tu cuenta.', 'Cuenta creada');
             // Siempre mostrar mensaje de verificación después de registro exitoso
             // Supabase requiere verificación de email por defecto
             setShowVerificationMessage(true);
         } catch (err) {
             console.error('Registration error:', err);
-            // Error manejado por AuthContext
+            const errorMessage = err instanceof Error ? err.message : 'Error al crear la cuenta';
+            showError(errorMessage, 'Error de registro');
         }
     };
 

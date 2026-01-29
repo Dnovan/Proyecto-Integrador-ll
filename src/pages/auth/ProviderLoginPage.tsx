@@ -11,11 +11,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, LogIn, AlertCircle, Users } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useGlobalNotification } from '../../context/NotificationContext';
 import { AuthImagePanel } from '../../components/molecules/AuthImagePanel';
 
 export const ProviderLoginPage: React.FC = () => {
     const navigate = useNavigate();
     const { login, isLoading, error, clearError } = useAuth();
+    const { showSuccess, showError } = useGlobalNotification();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,10 +54,12 @@ export const ProviderLoginPage: React.FC = () => {
 
         try {
             await login({ email, password });
+            showSuccess('¡Bienvenido! Acceso exitoso', 'Inicio de sesión');
             // Redirigir al dashboard de proveedor
-            navigate('/proveedor');
-        } catch {
-            // Error manejado por AuthContext
+            setTimeout(() => navigate('/proveedor'), 500);
+        } catch (err) {
+            const errorMessage = err instanceof Error ? err.message : 'Error al iniciar sesión';
+            showError(errorMessage, 'Error de acceso');
         }
     };
 

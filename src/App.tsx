@@ -11,6 +11,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, ProtectedRoute, useAuth } from './context/AuthContext';
+import { NotificationProvider } from './context/NotificationContext';
 import { Navbar } from './components/organisms/Navbar';
 import { Footer } from './components/organisms/Footer';
 
@@ -33,6 +34,9 @@ import { ProviderDashboardPage } from './pages/provider/ProviderDashboardPage';
 import BookingConfirmedPage from './pages/booking/BookingConfirmedPage';
 import BookingPendingPage from './pages/booking/BookingPendingPage';
 import BookingFailedPage from './pages/booking/BookingFailedPage';
+import { ProviderVenuesPage } from './pages/provider/ProviderVenuesPage';
+import { CreateVenuePage } from './pages/provider/CreateVenuePage';
+import { EditVenuePage } from './pages/provider/EditVenuePage';
 
 // ==================== RUTAS ====================
 
@@ -240,6 +244,42 @@ const AppRoutes: React.FC = () => {
         }
       />
 
+      {/* Mis Locales */}
+      <Route
+        path="/proveedor/locales"
+        element={
+          <ProtectedRoute allowedRoles={['PROVEEDOR']}>
+            <MainLayout>
+              <ProviderVenuesPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Publicar Nuevo Local */}
+      <Route
+        path="/proveedor/publicar"
+        element={
+          <ProtectedRoute allowedRoles={['PROVEEDOR']}>
+            <MainLayout>
+              <CreateVenuePage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Editar Local */}
+      <Route
+        path="/proveedor/locales/:id/editar"
+        element={
+          <ProtectedRoute allowedRoles={['PROVEEDOR']}>
+            <MainLayout>
+              <EditVenuePage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
 
       {/* ==================== RUTAS PROTEGIDAS - ADMIN ==================== */}
       <Route
@@ -268,7 +308,9 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppRoutes />
+        <NotificationProvider>
+          <AppRoutes />
+        </NotificationProvider>
       </AuthProvider>
     </BrowserRouter>
   );

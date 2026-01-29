@@ -11,14 +11,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Sparkles, Building2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useGlobalNotification } from '../../context/NotificationContext';
 import { AuthImagePanel } from '../../components/molecules/AuthImagePanel';
-import { Notification } from '../../components/atoms/Notification';
-import { useNotification } from '../../hooks/useNotification';
 
 export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const { login, isLoading, error, clearError } = useAuth();
-    const { notification, showError, showSuccess, closeNotification } = useNotification();
+    const { showError, showSuccess } = useGlobalNotification();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -79,17 +78,6 @@ export const LoginPage: React.FC = () => {
 
     return (
         <div className="auth-container">
-            {/* Sistema de Notificaciones Toast */}
-            {notification && (
-                <Notification
-                    message={notification.message}
-                    type={notification.type}
-                    title={notification.title}
-                    onClose={closeNotification}
-                    duration={notification.duration || 3000}
-                />
-            )}
-
             {/* Panel izquierdo - Imagen inmersiva */}
             <AuthImagePanel variant="client" />
 

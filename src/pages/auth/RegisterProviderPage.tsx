@@ -12,10 +12,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Phone, Sparkles, AlertCircle, CheckCircle, Building2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useGlobalNotification } from '../../context/NotificationContext';
 import { AuthImagePanel } from '../../components/molecules/AuthImagePanel';
 
 export const RegisterProviderPage: React.FC = () => {
     const { register, isLoading, error, clearError } = useAuth();
+    const { showSuccess, showError } = useGlobalNotification();
 
     const [formData, setFormData] = useState({
         businessName: '',
@@ -99,9 +101,12 @@ export const RegisterProviderPage: React.FC = () => {
             });
 
             console.log('Provider registration successful, showing verification message');
+            showSuccess('¡Registro exitoso! Revisa tu correo para verificar tu cuenta.', 'Registro completado');
             setShowVerificationMessage(true);
         } catch (err) {
             console.error('Provider registration error:', err);
+            const errorMessage = err instanceof Error ? err.message : 'Error al registrarse';
+            showError(errorMessage, 'Error de registro');
         }
     };
 
