@@ -34,9 +34,13 @@ import { ProviderDashboardPage } from './pages/provider/ProviderDashboardPage';
 import BookingConfirmedPage from './pages/booking/BookingConfirmedPage';
 import BookingPendingPage from './pages/booking/BookingPendingPage';
 import BookingFailedPage from './pages/booking/BookingFailedPage';
+import BookingDetailPage from './pages/booking/BookingDetailPage';
 import { ProviderVenuesPage } from './pages/provider/ProviderVenuesPage';
 import { CreateVenuePage } from './pages/provider/CreateVenuePage';
 import { EditVenuePage } from './pages/provider/EditVenuePage';
+import { ProviderBookingsPage } from './pages/provider/ProviderBookingsPage';
+import { ExplorePage } from './pages/client/ExplorePage';
+import { ClientBookingsPage } from './pages/client/ClientBookingsPage'; // Importación añadida
 
 // ==================== RUTAS ====================
 
@@ -167,6 +171,18 @@ const AppRoutes: React.FC = () => {
         }
       />
 
+      {/* Mis Reservaciones (Cliente) */}
+      <Route
+        path="/mis-reservaciones"
+        element={
+          <ProtectedRoute allowedRoles={['CLIENTE']}>
+            <MainLayout>
+              <ClientBookingsPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
       {/* Detalle de local - público */}
       <Route
         path="/local/:id"
@@ -182,7 +198,7 @@ const AppRoutes: React.FC = () => {
         path="/buscar"
         element={
           <MainLayout>
-            <HomePage />
+            <ExplorePage />
           </MainLayout>
         }
       />
@@ -275,6 +291,30 @@ const AppRoutes: React.FC = () => {
           <ProtectedRoute allowedRoles={['PROVEEDOR']}>
             <MainLayout>
               <EditVenuePage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Mis Reservaciones */}
+      <Route
+        path="/proveedor/reservaciones"
+        element={
+          <ProtectedRoute allowedRoles={['PROVEEDOR']}>
+            <MainLayout>
+              <ProviderBookingsPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Detalle de Reserva */}
+      <Route
+        path="/reserva/:id"
+        element={
+          <ProtectedRoute allowedRoles={['PROVEEDOR', 'CLIENTE']}>
+            <MainLayout>
+              <BookingDetailPage />
             </MainLayout>
           </ProtectedRoute>
         }

@@ -100,6 +100,17 @@ export const createPaymentPreference = async (
         expires: false,
         expiration_date_from: undefined,
         expiration_date_to: undefined,
+        // Configuración para evitar verificación de cuenta en sandbox
+        // binary_mode fuerza resultado inmediato sin verificación adicional
+        binary_mode: true,
+        // Excluir métodos que requieren cuenta
+        payment_methods: {
+            excluded_payment_types: [
+                { id: 'ticket' },      // Excluir pagos en efectivo
+                { id: 'atm' },         // Excluir cajeros
+            ],
+            installments: 1,           // Solo pago de contado
+        },
     };
 
     console.log('Creating payment preference with:', {

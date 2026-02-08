@@ -164,6 +164,8 @@ export interface Booking {
     paymentMethod: PaymentMethod;
     createdAt: Date;
     notes?: string;
+    startTime?: string;
+    endTime?: string;
 }
 
 /**

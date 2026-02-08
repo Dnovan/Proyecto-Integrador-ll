@@ -227,7 +227,7 @@ export const CreateVenuePage: React.FC = () => {
                 amenities: formData.amenities,
                 payment_methods: formData.paymentMethods,
                 rules: rules,
-                status: 'PENDING', // Los nuevos locales inician como pendientes
+                status: 'ACTIVE', // Publicado inmediatamente
             };
 
             const { error } = await db.venues.create(venueData);
@@ -235,8 +235,8 @@ export const CreateVenuePage: React.FC = () => {
             if (error) throw error;
 
             showSuccess(
-                'Tu local ha sido publicado y está pendiente de aprobación',
-                '¡Local creado!'
+                'Tu local ha sido publicado y ya es visible para los clientes',
+                '¡Local publicado!'
             );
             navigate('/proveedor/locales');
         } catch (error) {
@@ -678,10 +678,10 @@ No se permiten mascotas"
                                     <AlertCircle className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
                                     <div>
                                         <p className="text-sm font-medium text-text-primary">
-                                            Tu local será revisado antes de publicarse
+                                            Tu local será publicado inmediatamente
                                         </p>
                                         <p className="text-xs text-text-muted mt-1">
-                                            Nuestro equipo verificará la información. Recibirás una notificación cuando sea aprobado.
+                                            Al guardar, tu espacio estará visible para todos los clientes.
                                         </p>
                                     </div>
                                 </div>

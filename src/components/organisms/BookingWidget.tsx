@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Shield, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Users, Shield, Sparkles, CheckCircle2, Clock } from 'lucide-react';
 
 interface BookingWidgetProps {
     basePrice: number;
@@ -16,6 +16,7 @@ interface BookingWidgetProps {
     onReserve?: (data: BookingData) => void;
     selectedDate?: string | null;
     isLoading?: boolean;
+    existingBookings?: { start_time: string; end_time: string }[];
 }
 
 interface BookingData {
@@ -25,6 +26,8 @@ interface BookingData {
         security: boolean;
         cleaning: boolean;
     };
+    startTime: string;
+    endTime: string;
 }
 
 interface ServiceExtra {
@@ -84,8 +87,11 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
     onReserve,
     selectedDate,
     isLoading = false,
-}) => {
+    existingBookings = [],
+}: BookingWidgetProps) => {
     const [guestCount, setGuestCount] = useState(Math.round((minCapacity + maxCapacity) / 4));
+    const [startTime, setStartTime] = useState('12:00');
+    const [duration, setDuration] = useState(5);
     const [extras, setExtras] = useState({
         security: false,
         cleaning: false,
@@ -125,7 +131,11 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
 
     // Calculate total price
     const calculatePrice = () => {
-        let total = basePrice;
+        let total = basePrice; // Base price now covers the initial duration? Or should be per hour? 
+        // For simplicity, let's assume basePrice is for 5 hours, and extra hours cost extra.
+        // But user request didn't specify pricing model change, just time selection.
+        // Let's keep it simple: base price + per person. Time doesn't affect price yet unless specified.
+        // Or maybe duration * something? Let's stick to current model but maybe add small fee for extra hours later.
 
         // Add price per person above minimum
         if (guestCount > minCapacity) {
@@ -141,6 +151,25 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
 
     const totalPrice = calculatePrice();
 
+    // Check time availability
+    const isTimeAvailable = () => {
+        if (!existingBookings.length) return true;
+
+        const start = parseInt(startTime.split(':')[0]);
+        const end = start + duration;
+
+        return !existingBookings.some(booking => {
+            if (!booking.start_time || !booking.end_time) return false;
+            const existingStart = parseInt(booking.start_time.split(':')[0]);
+            const existingEnd = parseInt(booking.end_time.split(':')[0]);
+
+            // Check for overlap
+            return (start < existingEnd && end > existingStart);
+        });
+    };
+
+    const timeAvailable = isTimeAvailable();
+
     // Get event type label based on guest count
     const getEventTypeLabel = () => {
         if (guestCount <= 30) return { label: 'Reunión íntima', emoji: '✨' };
@@ -153,11 +182,17 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
 
     // Handle reservation
     const handleReserve = () => {
-        if (onReserve) {
+        if (onReserve && timeAvailable) {
+            const startHour = parseInt(startTime.split(':')[0]);
+            const endHour = startHour + duration;
+            const endTimeStr = `${endHour.toString().padStart(2, '0')}:00`;
+
             onReserve({
                 guestCount,
                 totalPrice,
                 extras,
+                startTime,
+                endTime: endTimeStr,
             });
         }
     };
@@ -341,6 +376,97 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
                 </AnimatePresence>
             </div>
 
+            {/* Time Selection */}
+            <div
+                style={{
+                    background: colors.bgLight,
+                    borderRadius: '16px',
+                    padding: '20px',
+                    marginBottom: '20px',
+                }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                    <Clock style={{ width: 20, height: 20, color: colors.gold }} />
+                    <span style={{ fontSize: '0.9375rem', fontWeight: 600, color: colors.text }}>
+                        Horario del evento
+                    </span>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                    <div>
+                        <label style={{ display: 'block', fontSize: '0.75rem', color: colors.textMuted, marginBottom: '6px' }}>
+                            Hora de inicio
+                        </label>
+                        <select
+                            value={startTime}
+                            onChange={(e) => setStartTime(e.target.value)}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '10px',
+                                border: `1px solid ${colors.border}`,
+                                background: colors.white,
+                                color: colors.text,
+                                fontSize: '0.9375rem',
+                                outline: 'none',
+                            }}
+                        >
+                            {Array.from({ length: 14 }).map((_, i) => {
+                                const hour = i + 8; // 8 AM to 9 PM
+                                const time = `${hour.toString().padStart(2, '0')}:00`;
+                                return (
+                                    <option key={time} value={time}>
+                                        {time}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+                    <div>
+                        <label style={{ display: 'block', fontSize: '0.75rem', color: colors.textMuted, marginBottom: '6px' }}>
+                            Duración (horas)
+                        </label>
+                        <select
+                            value={duration}
+                            onChange={(e) => setDuration(parseInt(e.target.value))}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '10px',
+                                border: `1px solid ${colors.border}`,
+                                background: colors.white,
+                                color: colors.text,
+                                fontSize: '0.9375rem',
+                                outline: 'none',
+                            }}
+                        >
+                            {[3, 4, 5, 6, 7, 8, 9, 10, 12].map((h) => (
+                                <option key={h} value={h}>
+                                    {h} horas
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                {!timeAvailable && (
+                    <div style={{
+                        marginTop: '12px',
+                        padding: '10px',
+                        background: '#FEE2E2',
+                        borderRadius: '8px',
+                        color: '#DC2626',
+                        fontSize: '0.8125rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                    }}>
+                        <Shield style={{ width: 14, height: 14 }} />
+                        Este horario ya está reservado. Por favor elige otro.
+                    </div>
+                )}
+            </div>
+
             {/* Service Extras */}
             <div style={{ marginBottom: '24px' }}>
                 <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, color: colors.text, marginBottom: '12px' }}>
@@ -472,7 +598,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({
             {/* Reserve Button */}
             <motion.button
                 onClick={handleReserve}
-                disabled={!selectedDate || isLoading}
+                disabled={!selectedDate || isLoading || !timeAvailable}
                 onMouseEnter={() => setIsHoveringButton(true)}
                 onMouseLeave={() => setIsHoveringButton(false)}
                 style={{

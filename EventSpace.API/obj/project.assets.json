@@ -1357,11 +1357,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\megam\\Downloads\\Proyecto-integrador-v2.0\\EventSpace.API\\EventSpace.API.csproj",
+      "projectUniqueName": "C:\\Users\\megam\\Downloads\\Proyecto-Integrador-ll (2)\\Proyecto-Integrador-ll\\Proyecto-Integrador-ll\\EventSpace.API\\EventSpace.API.csproj",
       "projectName": "EventSpace.API",
-      "projectPath": "C:\\Users\\megam\\Downloads\\Proyecto-integrador-v2.0\\EventSpace.API\\EventSpace.API.csproj",
+      "projectPath": "C:\\Users\\megam\\Downloads\\Proyecto-Integrador-ll (2)\\Proyecto-Integrador-ll\\Proyecto-Integrador-ll\\EventSpace.API\\EventSpace.API.csproj",
       "packagesPath": "C:\\Users\\megam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\megam\\Downloads\\Proyecto-integrador-v2.0\\EventSpace.API\\obj\\",
+      "outputPath": "C:\\Users\\megam\\Downloads\\Proyecto-Integrador-ll (2)\\Proyecto-Integrador-ll\\Proyecto-Integrador-ll\\EventSpace.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

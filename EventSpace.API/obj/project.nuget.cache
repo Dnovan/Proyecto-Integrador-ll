@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xs8INkvDaOo=",
+  "dgSpecHash": "y/wjOjAMONo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\megam\\Downloads\\Proyecto-integrador-v2.0\\EventSpace.API\\EventSpace.API.csproj",
+  "projectFilePath": "C:\\Users\\megam\\Downloads\\Proyecto-Integrador-ll (2)\\Proyecto-Integrador-ll\\Proyecto-Integrador-ll\\EventSpace.API\\EventSpace.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\megam\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\megam\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.0\\microsoft.aspnetcore.authentication.jwtbearer.9.0.0.nupkg.sha512",

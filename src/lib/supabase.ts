@@ -97,6 +97,8 @@ export type Database = {
                     payment_method: string | null;
                     payment_status: 'PENDING' | 'PARTIAL' | 'PAID';
                     notes: string | null;
+                    start_time: string | null;
+                    end_time: string | null;
                     created_at: string;
                     updated_at: string;
                 };

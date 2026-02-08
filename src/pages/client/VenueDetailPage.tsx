@@ -31,7 +31,8 @@ import { Skeleton } from '../../components/atoms/Skeleton';
 import { Notification } from '../../components/atoms/Notification';
 import { StarRating } from '../../components/molecules/StarRating';
 import { BookingWidget } from '../../components/organisms/BookingWidget';
-import * as api from '../../services/mockApi';
+import { getVenueById, getVenueAvailability, getBookingsForVenueDate } from '../../services/venueService';
+import { db, supabase } from '../../lib/supabase';
 import { createPaymentPreference, redirectToCheckout, type BookingPaymentData } from '../../services/mercadoPago';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../hooks/useNotification';
@@ -56,6 +57,7 @@ export const VenueDetailPage: React.FC = () => {
     const [venue, setVenue] = useState<Venue | null>(null);
     const [reviews, setReviews] = useState<Review[]>([]);
     const [availability, setAvailability] = useState<DateAvailability[]>([]);
+    const [dayBookings, setDayBookings] = useState<any[]>([]); // Store bookings for the selected date
     const [isLoading, setIsLoading] = useState(true);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -72,12 +74,28 @@ export const VenueDetailPage: React.FC = () => {
 
             setIsLoading(true);
             try {
-                const [venueData, reviewsData] = await Promise.all([
-                    api.getVenueById(id),
-                    api.getVenueReviews(id),
-                ]);
-                setVenue(venueData);
-                setReviews(reviewsData);
+                const venueData = await getVenueById(id);
+                if (venueData) {
+                    setVenue(venueData);
+                }
+                // Reviews se cargan desde Supabase
+                const { data: reviewsData } = await supabase
+                    .from('reviews')
+                    .select('*, users(name, avatar)')
+                    .eq('venue_id', id)
+                    .order('created_at', { ascending: false });
+                if (reviewsData) {
+                    setReviews(reviewsData.map((r: any) => ({
+                        id: r.id,
+                        venueId: r.venue_id,
+                        userId: r.user_id,
+                        userName: r.users?.name || 'Usuario',
+                        userAvatar: r.users?.avatar,
+                        rating: r.rating,
+                        comment: r.comment || '',
+                        createdAt: new Date(r.created_at),
+                    })));
+                }
             } catch (error) {
                 console.error('Error loading venue:', error);
             } finally {
@@ -94,8 +112,8 @@ export const VenueDetailPage: React.FC = () => {
             if (!id) return;
 
             try {
-                const availabilityData = await api.getVenueAvailability(id, currentMonth.getMonth(), currentMonth.getFullYear());
-                setAvailability(availabilityData);
+                const availabilityData = await getVenueAvailability(id, currentMonth.getMonth(), currentMonth.getFullYear());
+                setAvailability(availabilityData as DateAvailability[]);
             } catch (error) {
                 console.error('Error loading availability:', error);
             }
@@ -103,6 +121,25 @@ export const VenueDetailPage: React.FC = () => {
 
         loadAvailability();
     }, [id, currentMonth]);
+
+    // Load bookings when a date is selected
+    useEffect(() => {
+        const loadDayBookings = async () => {
+            if (!id || !selectedDate) {
+                setDayBookings([]);
+                return;
+            }
+
+            try {
+                const bookings = await getBookingsForVenueDate(id, selectedDate);
+                setDayBookings(bookings);
+            } catch (error) {
+                console.error('Error loading day bookings:', error);
+            }
+        };
+
+        loadDayBookings();
+    }, [id, selectedDate]);
 
     const nextImage = () => {
         if (venue) {
@@ -199,7 +236,13 @@ export const VenueDetailPage: React.FC = () => {
                 }}>
                     {/* Imagen principal */}
                     <div
-                        style={{ gridColumn: 'span 2', gridRow: 'span 2', position: 'relative', cursor: 'pointer', overflow: 'hidden' }}
+                        style={{
+                            gridColumn: venue.images.length === 1 ? 'span 4' : 'span 2',
+                            gridRow: 'span 2',
+                            position: 'relative',
+                            cursor: 'pointer',
+                            overflow: 'hidden'
+                        }}
                         onClick={() => setIsLightboxOpen(true)}
                     >
                         <img
@@ -319,7 +362,18 @@ export const VenueDetailPage: React.FC = () => {
                                     fontSize: '0.75rem',
                                     fontWeight: 500,
                                 }}>
-                                    {api.categoryLabels[venue.category]}
+                                    {({
+                                        SALON: 'Salón',
+                                        JARDIN: 'Jardín',
+                                        TERRAZA: 'Terraza',
+                                        HACIENDA: 'Hacienda',
+                                        PLAYA: 'Playa',
+                                        HOTEL: 'Hotel',
+                                        RESTAURANTE: 'Restaurante',
+                                        QUINTA: 'Quinta',
+                                        BODEGA: 'Bodega',
+                                        SALON_EVENTOS: 'Salón de Eventos',
+                                    } as Record<string, string>)[venue.category] || venue.category}
                                 </span>
                             </div>
                             <h1 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 700, color: colors.text, marginBottom: '12px' }}>
@@ -617,6 +671,7 @@ export const VenueDetailPage: React.FC = () => {
                                 pricePerPerson={Math.round(venue.price / venue.capacity)}
                                 selectedDate={selectedDate}
                                 isLoading={isProcessingPayment}
+                                existingBookings={dayBookings}
                                 onReserve={async (data) => {
                                     if (!isAuthenticated || !user) {
                                         showWarning('Debes iniciar sesión para reservar', 'Autenticación requerida');
@@ -630,6 +685,47 @@ export const VenueDetailPage: React.FC = () => {
 
                                     setIsProcessingPayment(true);
                                     try {
+                                        // 1. Crear el booking en Supabase primero
+                                        const bookingData = {
+                                            venue_id: venue.id,
+                                            client_id: user.id,
+                                            provider_id: venue.providerId,
+                                            event_date: selectedDate,
+                                            start_time: data.startTime,
+                                            end_time: data.endTime,
+                                            event_type: 'Evento',
+                                            guest_count: data.guestCount,
+                                            status: 'PENDING' as const,
+                                            base_price: venue.price,
+                                            extras_price: 0,
+                                            total_price: data.totalPrice,
+                                            payment_method: 'TARJETA' as const,
+                                            payment_status: 'PENDING' as const,
+                                            notes: null,
+                                        };
+
+                                        const { data: newBooking, error: bookingError } = await db.bookings.create(bookingData);
+
+                                        if (bookingError || !newBooking) {
+                                            throw new Error('Error al crear la reserva: ' + (bookingError?.message || 'Desconocido'));
+                                        }
+
+                                        console.log('Booking created:', newBooking);
+
+                                        // 2. Guardar el booking ID en localStorage para la página de confirmación
+                                        localStorage.setItem('pendingBookingId', newBooking.id);
+                                        localStorage.setItem('pendingBookingData', JSON.stringify({
+                                            venueName: venue.name,
+                                            venueImage: venue.images[0],
+                                            eventDate: selectedDate,
+                                            guestCount: data.guestCount,
+                                            totalPrice: data.totalPrice,
+                                            providerName: venue.providerName,
+                                            startTime: data.startTime,
+                                            endTime: data.endTime,
+                                        }));
+
+                                        // 3. Crear preferencia de pago con el booking ID
                                         const paymentData: BookingPaymentData = {
                                             venueId: venue.id,
                                             venueName: venue.name,
@@ -644,10 +740,9 @@ export const VenueDetailPage: React.FC = () => {
 
                                         showSuccess('Procesando pago...', 'Redirigiendo a Mercado Pago');
 
-                                        // Usar el access token de las variables de entorno
                                         const preference = await createPaymentPreference(paymentData);
 
-                                        // Redirigir a Mercado Pago (sandbox para pruebas)
+                                        // 4. Redirigir a Mercado Pago
                                         redirectToCheckout(preference.id, true);
                                     } catch (error) {
                                         console.error('Error creating payment:', error);

@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 import { PropertyCard } from '../../components/organisms/PropertyCard';
 import { VenueCardSkeleton } from '../../components/atoms/Skeleton';
 import Ballpit from '../../components/molecules/Ballpit';
-import * as api from '../../services/mockApi';
+import { getFeaturedVenues } from '../../services/venueService';
 import type { Venue } from '../../types';
 
 export const HomePage: React.FC = () => {
@@ -28,8 +28,8 @@ export const HomePage: React.FC = () => {
         const loadData = async () => {
             setIsLoading(true);
             try {
-                const venuesRes = await api.getVenues({}, 1, 6);
-                setVenues(venuesRes.data);
+                const venuesData = await getFeaturedVenues(6);
+                setVenues(venuesData);
             } catch (error) {
                 console.error('Error loading data:', error);
             } finally {
